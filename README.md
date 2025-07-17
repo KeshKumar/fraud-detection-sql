@@ -79,14 +79,6 @@ Located in the `/Screenshots/` folder:
 
 ---
 
-## ✅ Next Steps
-
-- Add anomaly detection using `CASE` statements in SQL
-- Create dashboards in Power BI or Excel for stakeholder reporting
-- Simulate alert triggers for large or repeat frauds
-
----
-
 ## 📜 License
 
 MIT License.  
