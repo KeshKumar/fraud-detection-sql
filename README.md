@@ -3,79 +3,99 @@ SQL project analyzing fraud patterns in financial transactions using PaySim data
 
 # 💸 Fraud Detection Using SQL (PaySim Dataset)
 
-This project analyzes synthetic mobile money transaction data using SQL (SQLite) to uncover fraud patterns. The dataset is a simulation inspired by financial systems like M-Pesa and focuses on identifying suspicious transactions based on value, type, and account activity.
+This project uses SQL to analyze synthetic mobile money transaction data and detect fraud patterns. It simulates a real-world financial system (like M-Pesa) and explores transaction types with higher fraud probability using SQLite and structured SQL queries.
 
 ---
 
 ## 📌 Objective
 
-- Detect transaction types most prone to fraud
-- Identify high-risk user accounts
-- Analyze high-value fraud transactions
-- Practice SQL data analysis for real-world fraud monitoring
+- Identify transaction types most prone to fraud
+- Detect suspicious accounts involved in repeated fraudulent transactions
+- Flag high-value fraudulent transactions
+- Practice SQL for real-world analytics use cases
 
 ---
 
 ## 🧰 Tools Used
 
-- **DB Browser for SQLite** – Simple GUI-based SQL engine for running queries locally
-- **SQLite** – Lightweight relational database
-- **PaySim Dataset** – Synthetic transaction data simulating real-world M-Pesa-like behavior
-- *(Optional)* Excel or Power BI for visualization
+- SQLite (via DB Browser for SQLite)
+- SQL (GROUP BY, filtering, aggregation)
+- Excel (for visualizations)
+- Power BI *(optional for advanced users)*
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
-fraud-detection-sql/
-│
-├── data/
-│ └── paysim_sample.csv # Source dataset (100K rows sample)
-│
+```
+.
+├── README.md                   # This file
+├── Data/
+│   └── fraud_by_type.csv       # Cleaned CSV used for analysis
 ├── sql/
-│ ├── 01_exploration.sql # Initial exploration queries
-│ ├── 02_fraud_by_type.sql # Fraud summary grouped by type
-│ ├── 03_high_value_frauds.sql # High-value fraudulent transactions
-│ └── 04_risky_accounts.sql # Top origin accounts involved in fraud
-│
-├── outputs/
-│ └── fraud_summary.csv # (Optional) Exported query results
-│
-├── screenshots/
-│ └── fraud_by_type.png # (Optional) Visual from Excel/BI
-│
-├── README.md # Project overview and documentation
-└── fraud_detection.sqlite # (Optional) SQLite database file
-
+│   ├── 01_exploration.sql
+│   ├── 02_fraud_by_type.sql
+│   ├── 03_high_value_frauds.sql
+│   └── 04_risky_accounts.sql
+├── Outputs/
+│   ├── fraud_by_type.csv       # Exported result from SQL queries
+│   └── high_value_frauds.csv   # (Optional) Result for high-value fraud
+├── Screenshots/
+│   └── fraud_rate_by_type.png  # Bar chart visualization created in Excel
+```
 
 ---
 
-## 🧠 Key SQL Concepts Demonstrated
-
-- `SELECT`, `GROUP BY`, `ORDER BY`
-- `WHERE` filtering and `CASE` conditions
-- Aggregation functions (`SUM`, `COUNT`, `AVG`)
-- Basic anomaly detection logic
-
----
-
-## 📊 Key Insights
-
-- ✅ Fraud only occurs in `CASH_OUT` and `TRANSFER` transactions
-- 💰 High-value frauds often exceed $1M
-- 🔁 Some origin accounts are reused in multiple fraud cases
-- 🔍 `PAYMENT`, `DEBIT`, and `CASH_IN` transactions are fraud-free
-
----
-
-## 🔑 Sample Query: Fraud Rate by Transaction Type
+## 📊 Sample Query: Fraud Rate by Transaction Type
 
 ```sql
 SELECT 
   type,
   COUNT(*) AS total_txns,
-  SUM(isFraud) AS fraud_count,
+  SUM(isFraud) AS fraud_txns,
   ROUND(SUM(isFraud) * 100.0 / COUNT(*), 2) AS fraud_rate_percent
 FROM transactions
 GROUP BY type
 ORDER BY fraud_rate_percent DESC;
+```
+
+---
+
+## 🔍 Key Findings
+
+- Fraud is exclusively present in `TRANSFER` and `CASH_OUT` transactions
+- `PAYMENT`, `CASH_IN`, and `DEBIT` showed 0% fraud
+- Some origin accounts are reused for multiple fraud attempts
+- High-value frauds often exceed $1 million
+
+---
+
+## 📈 Visual Insights
+
+Located in the `/Screenshots/` folder:
+
+- 📊 `fraud_rate_by_type.png`: A bar chart showing percentage fraud by transaction type
+- Can be used in reports or presentations
+
+---
+
+## ✅ Next Steps
+
+- Add anomaly detection using `CASE` statements in SQL
+- Create dashboards in Power BI or Excel for stakeholder reporting
+- Simulate alert triggers for large or repeat frauds
+
+---
+
+## 📜 License
+
+MIT License.  
+Dataset provided by the [PaySim project on Kaggle](https://www.kaggle.com/datasets/ntnu-testimon/paysim1) for research and educational use.
+
+---
+
+## 🔗 Author
+
+Keshav Kumar
+📧 your.email@example.com  
+🔗 [GitHub](https://github.com/yourusername) | [LinkedIn](https://linkedin.com/in/KeshKumar)
