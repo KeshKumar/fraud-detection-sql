@@ -97,5 +97,5 @@ Dataset provided by the [PaySim project on Kaggle](https://www.kaggle.com/datase
 ## 🔗 Author
 
 Keshav Kumar
-📧 your.email@example.com  
+📧 keshavkumar0610@gmail.com  
 🔗 [GitHub](https://github.com/yourusername) | [LinkedIn](https://linkedin.com/in/KeshKumar)
